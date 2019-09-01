@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "519036287303",
+    "firebase_url": "https://otukaiwatch.firebaseio.com",
+    "project_id": "otukaiwatch",
+    "storage_bucket": "otukaiwatch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:519036287303:android:85595e69e92fc233",
+        "android_client_info": {
+          "package_name": "com.example.otukai_watch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "519036287303-p4ceidpv6l368qfk3g0firrh4hrstarq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.otukai_watch",
+            "certificate_hash": "5653ec772c3848e0ae3e9db553fcfc93aad1edcb"
+          }
+        },
+        {
+          "client_id": "519036287303-lm0eeo8iqkcn5rtojm1mea9nbk4mnu8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvBb1VXDWrvJfTMDa9iANX2WAj-ZQZ6ew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "519036287303-lm0eeo8iqkcn5rtojm1mea9nbk4mnu8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
