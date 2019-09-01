@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">otukai-watch</string>
+    <string name="title_home">場所</string>
+    <string name="title_dashboard">チャット</string>
+    <string name="title_notifications">やることリスト</string>
+</resources>
