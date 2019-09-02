@@ -53,10 +53,11 @@
             android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@drawable/ic_action_add" app:maxImageSize="@dimen/fab_margin"
             app:backgroundTint="#B4BDC0"/>
+
     <Button
-            android:text="おつかいを始める"
+            android:text="@string/startOtukai"
             android:layout_width="197dp"
-            android:layout_height="65dp" android:id="@+id/button2"
+            android:layout_height="65dp" android:id="@+id/StartOtukaiButton"
             app:layout_anchorGravity="bottom|center"
             app:layout_anchor="@+id/include" android:backgroundTint="#D4DCDD" android:textColor="#00BCD4"/>
 
