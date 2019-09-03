@@ -32,10 +32,10 @@ class MainYarukotoListActivity : AppCompatActivity() {
     private fun addNewItemDialog() {
         val alert = AlertDialog.Builder(this)
         val itemEditText = EditText(this)
-        alert.setTitle("やることを追加")
+        alert.setTitle("やることリストの編集")
         alert.setMessage("商品名を入力する")
         alert.setView(itemEditText)
-        alert.setPositiveButton("Submit") { dialog, positiveButton ->   }
+        alert.setPositiveButton("追加") { dialog, positiveButton ->   }
         alert.show()
     }
 }
