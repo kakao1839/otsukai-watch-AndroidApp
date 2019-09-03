@@ -15,7 +15,6 @@ class MainYarukotoListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_yarukotolist)
-        setSupportActionBar(toolbar)
 
         val fab = findViewById<View>(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { view ->
@@ -28,7 +27,6 @@ class MainYarukotoListActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 
     private fun addNewItemDialog() {
         val alert = AlertDialog.Builder(this)
