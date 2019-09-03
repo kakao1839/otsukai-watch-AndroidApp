@@ -29,6 +29,7 @@ class MainYarukotoListActivity : AppCompatActivity() {
         }
     }
 
+
     private fun addNewItemDialog() {
         val alert = AlertDialog.Builder(this)
         val itemEditText = EditText(this)
