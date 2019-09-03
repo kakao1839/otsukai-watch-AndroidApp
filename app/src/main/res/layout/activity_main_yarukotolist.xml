@@ -14,7 +14,8 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:scrollbars="none"/>
+            android:scrollbars="none">
+    </ListView>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,8 +28,8 @@
             app:backgroundTint="#B4BDC0"/>
 
     <Button android:text="@string/startOtukai"
-            android:layout_width="154dp"
-            android:layout_height="wrap_content"
+            android:layout_width="168dp"
+            android:layout_height="61dp"
             android:id="@+id/StartOtukaiButton"
             app:layout_anchorGravity="bottom|center"
             app:layout_anchor="@+id/items_list"
