@@ -77,8 +77,8 @@
         <CheckBox
                 android:id="@+id/cb_item_is_done"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textColorLink="#4CAF50"
-                android:textColorHighlight="#8BC34A"/>
+                android:layout_height="wrap_content" android:textColorLink="#1B1B1B"
+                android:textColorHighlight="#1E1F1E"/>
         <TextView
                 android:id="@+id/tv_item_text"
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                 android:layout_toEndOf="@+id/cb_item_is_done"
                 android:layout_toRightOf="@+id/cb_item_is_done"
                 android:text="Item Text"
-                android:textColor="#4CAF50"
+                android:textColor="#1B1F1C"
                 android:textSize="20sp" android:layout_marginLeft="2dp" android:layout_marginStart="2dp"/>
         <ImageButton
                 android:id="@+id/iv_cross"
