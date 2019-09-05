@@ -34,7 +34,9 @@ class MainYarukotoListActivity : AppCompatActivity() {
         alert.setTitle("やることリストの編集")
         alert.setMessage("商品名を入力する")
         alert.setView(itemEditText)
-        alert.setPositiveButton("追加") { dialog, positiveButton ->   }
+        alert.setPositiveButton("追加") { dialog, positiveButton ->
+
+        }
         alert.show()
     }
 }
