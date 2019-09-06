@@ -9,8 +9,6 @@
         android:layout_height="match_parent"
         tools:context="MainActivity">
 
-    <include layout="@layout/activity_main_map" android:id="@+id/include_views_1"/>
-
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/tbTestToolbar"
             android:layout_width="0dp"
