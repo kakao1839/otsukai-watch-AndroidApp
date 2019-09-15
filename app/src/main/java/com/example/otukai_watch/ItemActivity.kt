@@ -1,4 +1,4 @@
-package com.example.vicky.todolist
+package com.example.otukai_watch
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
@@ -10,8 +10,10 @@ import android.view.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.otukai_watch.R
-import com.example.vicky.todolist.DTO.ToDoItem
+import com.example.otukai_watch.ToDoList.DBHandler
+import com.example.otukai_watch.ToDoList.DTO.ToDoItem
+import com.example.otukai_watch.ToDoList.INTENT_TODO_ID
+import com.example.otukai_watch.ToDoList.INTENT_TODO_NAME
 import kotlinx.android.synthetic.main.activity_item.*
 import java.util.*
 
@@ -118,7 +120,13 @@ class ItemActivity : AppCompatActivity() {
     class ItemAdapter(val activity: ItemActivity, val list: MutableList<ToDoItem>) :
         androidx.recyclerview.widget.RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
-            return ViewHolder(LayoutInflater.from(activity).inflate(R.layout.rv_child_item, p0, false))
+            return ViewHolder(
+                LayoutInflater.from(activity).inflate(
+                    R.layout.rv_child_item,
+                    p0,
+                    false
+                )
+            )
         }
 
         override fun getItemCount(): Int {
