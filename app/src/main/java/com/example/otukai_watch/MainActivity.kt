@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
-import com.example.otukai_watch.com.example.otukai_watch.toDo.MainYarukotoListActivity
+import com.example.otukai_watch.ToDoList.ToDoListPage
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                val intent = Intent(this, MainYarukotoListActivity::class.java)
+                val intent = Intent(this, ToDoListPage::class.java)
                 startActivity(intent)
             }
         }
