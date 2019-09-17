@@ -29,9 +29,6 @@ class ItemActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item)
-        setSupportActionBar(item_toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.title = intent.getStringExtra(INTENT_TODO_NAME)
         todoId = intent.getLongExtra(INTENT_TODO_ID, -1)
         dbHandler = DBHandler(this)
@@ -173,14 +170,6 @@ class ItemActivity : AppCompatActivity() {
             // val delete: ImageView = v.findViewById(R.id.iv_delete)
             val move: ImageView = v.findViewById(R.id.iv_move)
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return if (item?.itemId == android.R.id.home) {
-            finish()
-            true
-        } else
-            super.onOptionsItemSelected(item)
     }
 
 }
