@@ -1,4 +1,4 @@
-package com.example.otukai_watch
+package com.example.otukai_watch.ToDoList
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
@@ -10,10 +10,8 @@ import android.view.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.otukai_watch.ToDoList.DBHandler
+import com.example.otukai_watch.R
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
-import com.example.otukai_watch.ToDoList.INTENT_TODO_ID
-import com.example.otukai_watch.ToDoList.INTENT_TODO_NAME
 import kotlinx.android.synthetic.main.activity_item.*
 import java.util.*
 
@@ -26,6 +24,9 @@ class ItemActivity : AppCompatActivity() {
     var adapter : ItemAdapter? = null
     var touchHelper : ItemTouchHelper? = null
 
+    // API URL
+    val requestUrl = "https://pck.itok01.com/api/v1/task"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item)
@@ -34,7 +35,7 @@ class ItemActivity : AppCompatActivity() {
         dbHandler = DBHandler(this)
 
         rv_item.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-
+        // 追加
         fab_item.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
             dialog.setTitle("やることを追加")
@@ -57,6 +58,7 @@ class ItemActivity : AppCompatActivity() {
             dialog.show()
         }
 
+        // ドラッグで移動するやーつ
         touchHelper =
             ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0) {
                 override fun onMove(
@@ -81,6 +83,7 @@ class ItemActivity : AppCompatActivity() {
 
     }
 
+    // 編集
     fun updateItem(item: ToDoItem) {
         val dialog = AlertDialog.Builder(this)
         dialog.setTitle("やることを編集")
@@ -130,6 +133,8 @@ class ItemActivity : AppCompatActivity() {
             return list.size
         }
 
+
+        // checkboxの処理 (-> 削除)
         @SuppressLint("ClickableViewAccessibility")
         override fun onBindViewHolder(holder: ViewHolder, p1: Int) {
             holder.itemName.text = list[p1].itemName
@@ -163,6 +168,7 @@ class ItemActivity : AppCompatActivity() {
             }
         }
 
+        // config
         class ViewHolder(v: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
             val itemName: CheckBox = v.findViewById(R.id.cb_item)
             val delete: CheckBox = v.findViewById(R.id.cb_item)
