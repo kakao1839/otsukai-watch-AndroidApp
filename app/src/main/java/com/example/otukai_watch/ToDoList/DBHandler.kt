@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.otukai_watch.ToDoList.DTO.ToDo
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
 
 
