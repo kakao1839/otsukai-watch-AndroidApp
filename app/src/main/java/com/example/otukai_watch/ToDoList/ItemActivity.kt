@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import com.example.otukai_watch.R
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
+import com.example.otukai_watch.ToDoList.Task
 import kotlinx.android.synthetic.main.activity_item.*
 import java.util.*
 
