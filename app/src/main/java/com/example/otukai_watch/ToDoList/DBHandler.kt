@@ -29,22 +29,6 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null,
     }
 
 
-    fun addToDo(toDo: ToDo): Boolean {
-        val db = writableDatabase
-        val cv = ContentValues()
-        cv.put(COL_NAME, toDo.name)
-        val result = db.insert(TABLE_TODO, null, cv)
-        return result != (-1).toLong()
-    }
-
-    fun updateToDo(toDo: ToDo) {
-        val db = writableDatabase
-        val cv = ContentValues()
-        cv.put(COL_NAME, toDo.name)
-        db.update(TABLE_TODO,cv,"$COL_ID=?" , arrayOf(toDo.id
-            .toString()))
-    }
-
     fun deleteToDo(todoId: Long){
         val db = writableDatabase
         db.delete(TABLE_TODO_ITEM,"$COL_TODO_ID=?", arrayOf(todoId.toString()))
@@ -69,21 +53,6 @@ class DBHandler(val context: Context) : SQLiteOpenHelper(context, DB_NAME, null,
         queryResult.close()
     }
 
-    fun getToDos(): MutableList<ToDo> {
-        val result: MutableList<ToDo> = ArrayList()
-        val db = readableDatabase
-        val queryResult = db.rawQuery("SELECT * from $TABLE_TODO", null)
-        if (queryResult.moveToFirst()) {
-            do {
-                val todo = ToDo()
-                todo.id = queryResult.getLong(queryResult.getColumnIndex(COL_ID))
-                todo.name = queryResult.getString(queryResult.getColumnIndex(COL_NAME))
-                result.add(todo)
-            } while (queryResult.moveToNext())
-        }
-        queryResult.close()
-        return result
-    }
 
     fun addToDoItem(item: ToDoItem): Boolean {
         val db = writableDatabase
