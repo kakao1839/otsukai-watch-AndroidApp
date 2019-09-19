@@ -57,7 +57,6 @@ class ItemActivity : AppCompatActivity() {
             }
             dialog.show()
         }
-
         // ドラッグで移動するやーつ
         touchHelper =
             ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0) {
@@ -176,6 +175,8 @@ class ItemActivity : AppCompatActivity() {
             // val delete: ImageView = v.findViewById(R.id.iv_delete)
             val move: ImageView = v.findViewById(R.id.iv_move)
         }
+
+
     }
 
 }
