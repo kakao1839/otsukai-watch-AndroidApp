@@ -4,4 +4,5 @@
     <string name="title_dashboard">チャット</string>
     <string name="title_notifications">やることリスト</string>
     <string name="title_activity_main2">やることリスト</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
