@@ -4,7 +4,7 @@
           xmlns:map="http://schemas.android.com/apk/res-auto"
           android:layout_width="418dp"
           android:layout_height="547dp"
-          android:id="@+id/map"
+          android:id="@+id/navigation_home"
           tools:context=".GoogleMap.MapsActivity"
           android:name="com.google.android.gms.maps.SupportMapFragment" tools:layout_editor_absoluteY="49dp"
           tools:layout_editor_absoluteX="-2dp"/>
