@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarkerClickListener {
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarke
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                viewflipper.displayedChild=0
+                viewflipper.displayedChild=1
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                textMessage.setText(R.string.title_dashboard)
+                viewflipper.displayedChild=0
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
