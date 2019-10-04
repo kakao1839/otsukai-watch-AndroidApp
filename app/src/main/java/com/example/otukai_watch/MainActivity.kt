@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback,  GoogleMap.OnMarke
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                viewflipper.displayedChild=1
+                viewflipper.displayedChild=0
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                viewflipper.displayedChild=0
+                viewflipper.displayedChild=1
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {

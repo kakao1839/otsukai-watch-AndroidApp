@@ -53,6 +53,7 @@
 
     >
         <include layout="@layout/activity_maps1"/>
+        <include layout="@layout/search"/>
     </ViewFlipper>
 
 
