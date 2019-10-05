@@ -15,13 +15,13 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [searchFragment.OnFragmentInteractionListener] interface
+ * [profilFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [searchFragment.newInstance] factory method to
+ * Use the [profilFragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class searchFragment : Fragment() {
+class profilFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -40,8 +40,9 @@ class searchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_profil, container, false)
     }
+
 
 
 }
