@@ -9,4 +9,3 @@
           android:id="@+id/map"
           tools:context=".MainActivity"
           android:name="com.google.android.gms.maps.SupportMapFragment"/>
-
