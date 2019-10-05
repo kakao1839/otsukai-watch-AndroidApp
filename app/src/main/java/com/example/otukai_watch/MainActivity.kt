@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.otukai_watch.ToDoList.ItemActivity
+import com.example.otukai_watch.VoiceChat.VoiceActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,8 +20,8 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                viewflipper.displayedChild=1
-                return@OnNavigationItemSelectedListener true
+                val intent = Intent(this, VoiceActivity::class.java)
+                startActivity(intent)
             }
             R.id.navigation_notifications -> {
                 val intent = Intent(this, ItemActivity::class.java)
