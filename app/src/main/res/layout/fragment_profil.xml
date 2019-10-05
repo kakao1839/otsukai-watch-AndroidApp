@@ -9,7 +9,7 @@
 
 
     <TextView
-            android:text="@string/title_profil"
+            android:text="@string/title_dashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2" android:layout_marginTop="8dp"
