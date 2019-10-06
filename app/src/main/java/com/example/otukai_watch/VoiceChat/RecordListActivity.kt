@@ -1,5 +1,6 @@
 package com.example.otukai_watch.VoiceChat
 
+import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -77,6 +78,7 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         getAllRecordings()
     }
 
+    @SuppressLint("WrongConstant")
     private fun getAllRecordings() {
         val recordArrayList = ArrayList<Recording>()
         val root = android.os.Environment.getExternalStorageDirectory()

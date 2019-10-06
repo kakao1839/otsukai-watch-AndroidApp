@@ -18,7 +18,6 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.example.otukai_watch.R
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.voice_activity_main.*
 import java.io.File
 import java.io.IOException
@@ -64,7 +63,7 @@ class VoiceActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.voice_activity_main)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getPermissionToRecordAudio()
