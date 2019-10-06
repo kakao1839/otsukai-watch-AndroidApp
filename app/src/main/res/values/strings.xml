@@ -7,4 +7,5 @@
     <string name="title_activity_maps">otukai-watch</string>
     <string name="google_maps_key">"AIzaSyAVq_B23HCVY4ov4gP98EoZrVKP6wIhc8I"</string>
     <string name="no_data_found">No data found..!!</string>
+    <string name="applicant_name">Android Codility</string>
 </resources>
