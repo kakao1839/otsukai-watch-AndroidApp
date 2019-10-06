@@ -6,6 +6,8 @@
     <string name="title_activity_main2">やることリスト</string>
     <string name="title_activity_maps">otukai-watch</string>
     <string name="google_maps_key">"AIzaSyAVq_B23HCVY4ov4gP98EoZrVKP6wIhc8I"</string>
-    <string name="no_data_found">No data found..!!</string>
-    <string name="applicant_name">Android Codility</string>
+    <string name="record">Record</string>
+    <string name="stopRecording">Stop Recording</string>
+    <string name="playRecord">Play Record</string>
+    <string name="stopPlayingRecord">Stop Playing Record</string>
 </resources>
