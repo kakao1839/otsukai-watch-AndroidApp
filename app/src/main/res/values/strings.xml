@@ -10,4 +10,9 @@
     <string name="stopRecording">Stop Recording</string>
     <string name="playRecord">Play Record</string>
     <string name="stopPlayingRecord">Stop Playing Record</string>
+    <string name="play">play</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="applicant_name">Android Codility</string>
+    <string name="no_data_found">No data found..!!</string>
 </resources>

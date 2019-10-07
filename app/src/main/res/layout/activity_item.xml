@@ -28,10 +28,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="false"
             android:src="@drawable/plus"
             app:backgroundTint="@color/colorPrimaryDark" android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"/>
+            android:layout_marginStart="16dp" android:layout_marginBottom="19dp"
+            android:layout_marginRight="141dp"/>
 
     <TextView
             android:id="@+id/message"
