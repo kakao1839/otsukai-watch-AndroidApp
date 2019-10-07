@@ -12,6 +12,7 @@ import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
+import com.example.otukai_watch.VoiceChat.RecordListActivity
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.View

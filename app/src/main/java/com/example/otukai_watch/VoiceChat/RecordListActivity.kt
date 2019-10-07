@@ -72,8 +72,6 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.record_list)
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
         getAllRecordings()
     }
 
