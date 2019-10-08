@@ -20,7 +20,7 @@ import java.io.File
 import java.io.IOException
 
 /**
- * Created by Govind on 3/29/2018.
+ * レコードしたものをリスト表示する.
  */
 @RequiresApi(Build.VERSION_CODES.KITKAT)
 class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {

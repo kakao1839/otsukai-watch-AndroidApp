@@ -16,9 +16,8 @@ import com.example.otukai_watch.VoiceChat.model.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 
 /**
- * Created by Govind on 3/28/2018.
+ * レコードファイル名表示とか動的に書き換わるとこらへん.
  */
-
 @RequiresApi(Build.VERSION_CODES.KITKAT)
 class MyAdapter(private val recordList: ArrayList<Recording>) : androidx.recyclerview.widget.RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 

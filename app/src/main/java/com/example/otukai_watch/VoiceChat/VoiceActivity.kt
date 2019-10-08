@@ -12,18 +12,20 @@ import android.os.SystemClock
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
-import com.example.otukai_watch.VoiceChat.RecordListActivity
+
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.example.otukai_watch.R
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_voice.*
 import java.io.File
 import java.io.IOException
 
+/**
+ * レコードに関する処理.
+ */
 @RequiresApi(api = Build.VERSION_CODES.M)
 class VoiceActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -115,7 +117,7 @@ class VoiceActivity : AppCompatActivity(), View.OnClickListener {
             file.mkdirs()
         }
 
-        fileName = root.absolutePath + "/AndroidCodility/Audios/" + (System.currentTimeMillis().toString() + ".mp3")
+        fileName = root.absolutePath + "/AndroidCodility/Audios/" + (System.currentTimeMillis().toString() + ".wav")
         Log.d("filename", fileName)
         mRecorder!!.setOutputFile(fileName)
         mRecorder!!.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
