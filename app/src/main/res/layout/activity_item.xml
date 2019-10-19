@@ -26,12 +26,12 @@
             android:id="@+id/fab_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/plus"
-            app:backgroundTint="@color/colorPrimaryDark" android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp" android:layout_marginBottom="19dp"
-            android:layout_marginRight="141dp"/>
+            app:backgroundTint="@color/colorPrimaryDark"
+            android:layout_marginStart="16dp" android:layout_marginBottom="23dp"
+            android:layout_marginRight="27dp" android:layout_alignBottom="@+id/rv_item" android:layout_marginEnd="27dp"
+            android:layout_alignEnd="@+id/rv_item"/>
 
     <TextView
             android:id="@+id/message"
