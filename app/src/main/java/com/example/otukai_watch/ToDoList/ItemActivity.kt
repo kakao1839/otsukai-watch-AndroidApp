@@ -13,6 +13,7 @@ import android.widget.ImageView
 import com.example.otukai_watch.R
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
 import com.example.otukai_watch.ToDoList.Task
+import com.github.kittinunf.fuel.httpDelete
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
@@ -201,6 +202,35 @@ class ItemActivity : AppCompatActivity() {
                 dialog.setTitle("完了")
                 dialog.setMessage("やることをリストから削除します。")
                 dialog.setPositiveButton("削除") { _: DialogInterface, _: Int ->
+                    val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                    val requestAdapter = moshi.adapter(Task::class.java)
+                    val header: HashMap<String, String> = hashMapOf("Content-Type" to "application/json")
+
+                    val task = Task(
+                        user = list[p1].user,
+                        item = list[p1].item,
+                        done = 0
+                    )
+
+                    val httpAsync = "https://pck.itok01.com/api/v1/task"
+                        .httpDelete()
+                        .header(header)
+                        .body(requestAdapter.toJson(task))
+                        .responseString { request, response, result ->
+                            when (result) {
+                                is Result.Failure -> {
+                                    val ex = result.getException()
+                                    println(ex)
+                                }
+                                is Result.Success -> {
+                                    val data = result.get()
+                                    println(data)
+                                }
+                            }
+                        }
+
+                    httpAsync.join()
+
                     activity.refreshList()
                 }
                 dialog.setNegativeButton("キャンセル") { _: DialogInterface, _: Int ->
