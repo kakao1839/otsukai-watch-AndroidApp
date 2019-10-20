@@ -16,7 +16,9 @@ import com.example.otukai_watch.ToDoList.Task
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.fuel.httpPost
 import com.github.kittinunf.result.Result
+import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_item.*
 import java.util.*
@@ -26,7 +28,7 @@ class ItemActivity : AppCompatActivity() {
     lateinit var dbHandler: DBHandler
     var todoId: Long = -1
 
-    var list: MutableList<ToDoItem>? = null
+    var list: MutableList<Task>? = null
     var adapter : ItemAdapter? = null
     var touchHelper : ItemTouchHelper? = null
 
@@ -146,12 +148,33 @@ class ItemActivity : AppCompatActivity() {
     }
 
     private fun refreshList() {
-        list = dbHandler.getToDoItems(todoId)
-        adapter = ItemAdapter(this, list!!)
-        rv_item.adapter = adapter
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        val httpAsync = (requestUrl + "?user=taro")
+            .httpGet()
+            .responseString { request, response, result ->
+                when (result) {
+                    is Result.Failure -> {
+                        val ex = result.getException()
+                        println(ex)
+                    }
+                    is Result.Success -> {
+                        val data = result.get()
+                        println(data)
+                        val listMyData = Types.newParameterizedType(List::class.java, Task::class.java)
+                        val listAdapter: JsonAdapter<MutableList<Task>> = moshi.adapter(listMyData)
+
+                        list = listAdapter.fromJson(data);
+
+                        adapter = ItemAdapter(this, list!!)
+                        rv_item.adapter = adapter
+                    }
+                }
+            }
+
+        httpAsync.join()
     }
 
-    class ItemAdapter(val activity: ItemActivity, val list: MutableList<ToDoItem>) :
+    class ItemAdapter(val activity: ItemActivity, val list: MutableList<Task>) :
         androidx.recyclerview.widget.RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
             return ViewHolder(
@@ -171,18 +194,13 @@ class ItemActivity : AppCompatActivity() {
         // checkboxの処理 (-> 削除)
         @SuppressLint("ClickableViewAccessibility")
         override fun onBindViewHolder(holder: ViewHolder, p1: Int) {
-            holder.itemName.text = list[p1].itemName
-            holder.itemName.isChecked = list[p1].isCompleted
-            holder.itemName.setOnClickListener {
-                list[p1].isCompleted = !list[p1].isCompleted
-                activity.dbHandler.updateToDoItem(list[p1])
-            }
+            holder.itemName.text = list[p1].item
+            holder.itemName.isChecked = (list[p1].done != 0)
             holder.delete.setOnClickListener {
                 val dialog = AlertDialog.Builder(activity)
                 dialog.setTitle("完了")
                 dialog.setMessage("やることをリストから削除します。")
                 dialog.setPositiveButton("削除") { _: DialogInterface, _: Int ->
-                    activity.dbHandler.deleteToDoItem(list[p1].id)
                     activity.refreshList()
                 }
                 dialog.setNegativeButton("キャンセル") { _: DialogInterface, _: Int ->
@@ -191,7 +209,7 @@ class ItemActivity : AppCompatActivity() {
                 dialog.show()
             }
             holder.edit.setOnClickListener {
-                activity.updateItem(list[p1])
+                //activity.updateItem(list[p1])
             }
 
             holder.move.setOnTouchListener { v, event ->
