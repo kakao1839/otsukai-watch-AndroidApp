@@ -13,6 +13,11 @@ import android.widget.ImageView
 import com.example.otukai_watch.R
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
 import com.example.otukai_watch.ToDoList.Task
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.result.Result
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_item.*
 import java.util.*
 
@@ -51,6 +56,35 @@ class ItemActivity : AppCompatActivity() {
                     item.isCompleted = false
                     dbHandler.addToDoItem(item)
                     refreshList()
+
+                    val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                    val requestAdapter = moshi.adapter(Task::class.java)
+                    val header: HashMap<String, String> = hashMapOf("Content-Type" to "application/json")
+
+                    val task = Task(
+                        user = "taro",
+                        item = toDoName.text.toString(),
+                        done = 0
+                    )
+
+                    val httpAsync = requestUrl
+                        .httpPost()
+                        .header(header)
+                        .body(requestAdapter.toJson(task))
+                        .responseString { request, response, result ->
+                            when (result) {
+                                is Result.Failure -> {
+                                    val ex = result.getException()
+                                    println(ex)
+                                }
+                                is Result.Success -> {
+                                    val data = result.get()
+                                    println(data)
+                                }
+                            }
+                        }
+
+                    httpAsync.join()
                 }
             }
             dialog.setNegativeButton("キャンセル") { _: DialogInterface, _: Int ->
