@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.otukai_watch.R
 
-
 class timerActivity : AppCompatActivity() {
 
   val handler = Handler()  //一度だけ代入
@@ -58,6 +57,8 @@ class timerActivity : AppCompatActivity() {
       }
     }
   }
+
+
 
   // 数値を00:00:00形式の文字列に変換する関数
   // 引数timeにはデフォルト値0を設定、返却する型はnullableなString?型
