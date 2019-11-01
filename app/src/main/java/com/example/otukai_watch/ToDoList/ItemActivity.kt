@@ -2,6 +2,7 @@ package com.example.otukai_watch.ToDoList
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -10,6 +11,7 @@ import android.view.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import com.example.otukai_watch.OtukaiTimer.timerActivity
 import com.example.otukai_watch.R
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
 import com.example.otukai_watch.ToDoList.Task
@@ -34,6 +36,13 @@ class ItemActivity : AppCompatActivity() {
         supportActionBar?.title = intent.getStringExtra(INTENT_TODO_NAME)
         todoId = intent.getLongExtra(INTENT_TODO_ID, -1)
         dbHandler = DBHandler(this)
+
+        startOtukai.setOnClickListener {
+            //Intentクラスのインスタンスを生成
+            val intent = Intent(this,timerActivity::class.java)
+            //アクティビティを起動する
+            startActivity(intent)
+        }
 
         rv_item.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         // 追加
