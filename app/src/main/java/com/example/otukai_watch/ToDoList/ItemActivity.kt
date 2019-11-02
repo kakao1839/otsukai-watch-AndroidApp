@@ -64,6 +64,7 @@ class ItemActivity : AppCompatActivity() {
                     item.isCompleted = false
                     dbHandler.addToDoItem(item)
                     refreshList()
+
                     val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
                     val requestAdapter = moshi.adapter(Task::class.java)
                     val header: HashMap<String, String> = hashMapOf("Content-Type" to "application/json")

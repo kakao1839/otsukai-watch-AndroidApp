@@ -65,6 +65,9 @@ class VoiceActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    //API URL
+    val requestUrl = "https://pck.itok01.com/api/v1/voice?user=taro&id=1"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voice)
@@ -106,7 +109,7 @@ class VoiceActivity : AppCompatActivity(), View.OnClickListener {
         imgViewPlay.setImageResource(R.drawable.ic_play_circle)
         chronometer.stop()
     }
-
+//レコード開始
     private fun startRecording() {
         mRecorder = MediaRecorder()
         mRecorder!!.setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -135,6 +138,7 @@ class VoiceActivity : AppCompatActivity(), View.OnClickListener {
         // making the imageView a stop button starting the chronometer
         chronometer.base = SystemClock.elapsedRealtime()
         chronometer.start()
+
     }
 
 
