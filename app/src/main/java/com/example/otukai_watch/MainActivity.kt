@@ -10,10 +10,13 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -61,11 +64,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
+
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val basyo = LatLng(26.526387, 128.028866) //緯度,経度
+        val zoomValue = 13.0f // 1.0f 〜 21.0f を指定
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(basyo, zoomValue))
+     //   mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(basyo, zoomValue))
+
+        val marker = mMap.addMarker(
+            MarkerOptions()
+                .position(basyo)
+                .title("動物園")    // マーカーをタップ時に表示するテキスト文字列
+                .snippet("サーターアンダギーが名物です。")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+        )
+        marker.showInfoWindow() // タップした時と同じ挙動
+
+
     }
 }
