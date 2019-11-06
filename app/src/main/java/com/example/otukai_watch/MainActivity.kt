@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.otukai_watch.ToDoList.ItemActivity
 import com.example.otukai_watch.VoiceChat.VoiceActivity
+import com.github.kittinunf.fuel.httpGet
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -14,6 +15,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.result.Result
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -65,7 +70,44 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
 
+        // API URL
+        val requestUrl = "https://pck.itok01.com/api/v1/location?user=taro"
+
         mMap = googleMap
+
+        data class MapTask (
+            val user: String,
+            val latitude:Float,
+            val longitude:Float
+        )
+
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        val requestAdapter = moshi.adapter(MapTask::class.java)
+        val header: HashMap<String, String> = hashMapOf("Content-Type" to "application/json")
+
+        val maptask = MapTask(
+            user = "taro",
+            latitude = 26.5262305,
+            longitude = 128.0293976
+        )
+
+        val httpAsync = requestUrl
+            .httpPost()
+            .header(header)
+            .body(requestAdapter.toJson(maptask))
+            .responseString { request, response, result ->
+                when (result) {
+                    is Result.Failure -> {
+                        val ex = result.getException()
+                        println(ex)
+                    }
+                    is Result.Success -> {
+                        val data = result.get()
+                        println(data)
+                    }
+                }
+            }
+        httpAsync.join()
 
         val basyo = LatLng(26.526387, 128.028866) //緯度,経度
         val zoomValue = 13.0f // 1.0f 〜 21.0f を指定
@@ -75,8 +117,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         val marker = mMap.addMarker(
             MarkerOptions()
                 .position(basyo)
-                .title("動物園")    // マーカーをタップ時に表示するテキスト文字列
-                .snippet("サーターアンダギーが名物です。")
+                .title("現在地")    // マーカーをタップ時に表示するテキスト文字列
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
         )
         marker.showInfoWindow() // タップした時と同じ挙動
