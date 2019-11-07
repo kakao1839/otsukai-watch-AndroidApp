@@ -4,6 +4,7 @@
     <string name="title_dashboard">チャット</string>
     <string name="title_notifications">やることリスト</string>
     <string name="title_activity_main2">やることリスト</string>
+    <string name="title_activity_main3">タイマー</string>
     <string name="title_activity_maps">otukai-watch</string>
     <string name="google_maps_key">"AIzaSyAVq_B23HCVY4ov4gP98EoZrVKP6wIhc8I"</string>
     <string name="record">Record</string>
@@ -15,4 +16,6 @@
     <string name="stop">stop</string>
     <string name="applicant_name">Android Codility</string>
     <string name="no_data_found">No data found..!!</string>
+    <string name="bluetooth_is_not_supported">Bluetooth is not supported.</string>
+    <string name="bluetooth_is_not_working">Bluetooth is not working.</string>
 </resources>

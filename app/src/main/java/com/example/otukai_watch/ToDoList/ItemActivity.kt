@@ -2,6 +2,7 @@ package com.example.otukai_watch.ToDoList
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -10,9 +11,14 @@ import android.view.*
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import com.example.otukai_watch.OtukaiTimer.timerActivity
 import com.example.otukai_watch.R
 import com.example.otukai_watch.ToDoList.DTO.ToDoItem
 import com.example.otukai_watch.ToDoList.Task
+import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.result.Result
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_item.*
 import java.util.*
 
@@ -35,6 +41,13 @@ class ItemActivity : AppCompatActivity() {
         todoId = intent.getLongExtra(INTENT_TODO_ID, -1)
         dbHandler = DBHandler(this)
 
+        startOtukai.setOnClickListener {
+            //Intentクラスのインスタンスを生成
+            val intent = Intent(this,timerActivity::class.java)
+            //アクティビティを起動する
+            startActivity(intent)
+        }
+
         rv_item.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         // 追加
         fab_item.setOnClickListener {
@@ -51,6 +64,35 @@ class ItemActivity : AppCompatActivity() {
                     item.isCompleted = false
                     dbHandler.addToDoItem(item)
                     refreshList()
+
+                    val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+                    val requestAdapter = moshi.adapter(Task::class.java)
+                    val header: HashMap<String, String> = hashMapOf("Content-Type" to "application/json")
+
+                    val task = Task(
+                        user = "taro",
+                        item = toDoName.text.toString(),
+                        done = 0
+                    )
+
+                    val httpAsync = requestUrl
+                        .httpPost()
+                        .header(header)
+                        .body(requestAdapter.toJson(task))
+                        .responseString { request, response, result ->
+                            when (result) {
+                                is Result.Failure -> {
+                                    val ex = result.getException()
+                                    println(ex)
+                                }
+                                is Result.Success -> {
+                                    val data = result.get()
+                                    println(data)
+                                }
+                            }
+                        }
+
+                    httpAsync.join()
                 }
             }
             dialog.setNegativeButton("キャンセル") { _: DialogInterface, _: Int ->
