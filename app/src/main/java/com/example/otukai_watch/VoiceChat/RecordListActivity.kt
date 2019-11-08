@@ -89,11 +89,11 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
                 val recordingUri = root.absolutePath + "/AndroidCodility/Audios/" + fileName
                 recordArrayList.add(Recording(recordingUri, fileName, false))
             }
-            tvNoData.visibility = View.GONE
+           /* tvNoData.visibility = View.GONE
             recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
             myAdapter = MyAdapter(recordArrayList)
             myAdapter!!.setListener(this)
-            recyclerView.adapter = myAdapter
+            recyclerView.adapter = myAdapter*/
         }
     }
 
