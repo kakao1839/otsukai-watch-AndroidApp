@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
 
         // API URL
-        val requestUrl = "https://pck.itok01.com/api/v1/location?user=taro"
+        /*val requestUrl = "https://pck.itok01.com/api/v1/location?user=taro"
 
         mMap = googleMap
 
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                 }
             }
-        httpAsync.join()
+        httpAsync.join()*/
 
         val basyo = LatLng(26.526387, 128.028866) //緯度,経度
         val zoomValue = 13.0f // 1.0f 〜 21.0f を指定
