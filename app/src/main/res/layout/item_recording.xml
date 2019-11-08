@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="2dp"
     android:background="@android:color/white"
@@ -8,16 +8,22 @@
     android:padding="10dp">
 
   <androidx.appcompat.widget.AppCompatImageView
-  android:id="@+id/imgViewPlay"
-  android:layout_width="51dp"
-  android:layout_height="wrap_content"
-  android:layout_gravity="center_vertical"
-  android:background="?android:attr/selectableItemBackground"
-  android:clickable="true"
-  android:focusable="true"
-  android:src="@drawable/ic_play_circle"/>
+    android:id="@+id/imgViewPlay"
+    android:layout_width="61dp"
+    android:layout_height="72dp"
+    android:layout_gravity="center_vertical"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:src="@drawable/ic_play_circle"/>
 
 
+  <ImageView
+    android:layout_width="41dp"
+    android:layout_height="65dp" app:srcCompat="@drawable/ic_delete" android:id="@+id/delete"
+    android:layout_alignParentEnd="true"
+    android:layout_marginEnd="4dp"
+    android:layout_marginStart="12dp"/>
   <LinearLayout
     android:layout_width="268dp"
     android:layout_height="69dp"
