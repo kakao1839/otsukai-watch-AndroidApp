@@ -5,17 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/title_dashboard"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="40sp" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
+  <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -23,18 +13,18 @@
         android:background="@color/colorPrimary"
         tools:ignore="ObsoleteLayoutParam" />
 
-    <TextView
-        android:id="@+id/tvNoData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/no_data_found"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
+  <TextView
+    android:id="@+id/tvNoData"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:text="@string/no_data_found"
+    android:textColor="@color/colorAccent"
+    android:textSize="20sp"/>
+  <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+  </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

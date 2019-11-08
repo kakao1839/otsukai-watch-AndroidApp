@@ -8,28 +8,44 @@
   <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/tvHeader"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="?android:actionBarSize"
     android:padding="10dp"
-    android:text="@string/title_dashboard"
-    android:textColor="@color/colorPrimaryDark"
-    android:textSize="40sp"/>
+
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:background="#4CAF50"
+    android:textSize="24sp"/>
 
   <androidx.appcompat.widget.AppCompatImageButton
     android:id="@+id/imgBtRecordList"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
+    android:layout_width="43dp"
+    android:layout_height="43dp"
     android:layout_above="@+id/ll"
     android:layout_alignParentEnd="true"
     android:layout_alignParentRight="true"
-    android:layout_marginBottom="12dp"
-    android:background="@drawable/ic_playlist_play"/>
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/ic_playlist_play"
+    android:layout_marginRight="5dp" android:layout_marginEnd="5dp"/>
 
+  <TextView
+    android:layout_width="173dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView"
+    android:textSize="24sp"
+    android:layout_marginEnd="217dp"
+    android:layout_marginStart="21dp"
+    android:layout_marginBottom="614dp"
+    android:layout_marginTop="12dp"
+    android:text="@string/title_dashboard"
+    android:singleLine="true"
+    android:layout_alignStart="@+id/tvHeader"
+    android:layout_alignParentEnd="true"/>
   <androidx.appcompat.widget.LinearLayoutCompat
     android:id="@+id/ll"
     android:layout_width="match_parent"
     android:layout_height="2dp"
     android:layout_below="@+id/tvHeader"
-    android:background="@color/colorPrimary"/>
+    android:background="@color/colorPrimary">
+  </androidx.appcompat.widget.LinearLayoutCompat>
 
   <LinearLayout
     android:id="@+id/llRecorder"
