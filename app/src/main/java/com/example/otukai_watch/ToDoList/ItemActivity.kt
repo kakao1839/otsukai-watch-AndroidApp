@@ -159,6 +159,8 @@ class ItemActivity : AppCompatActivity() {
 
   private fun refreshList() {
     val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    //スリープ処理挟む
+    Thread.sleep(2000L)
 
     val httpAsync = (requestUrl + "?user=taro")
       .httpGet()
