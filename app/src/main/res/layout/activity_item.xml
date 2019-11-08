@@ -7,12 +7,12 @@
         android:layout_height="match_parent"
         tools:context=".ToDoList.ItemActivity">
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/item_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:background="#4CAF50"/>
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/item_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?android:actionBarSize"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:background="#4CAF50"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_below="@+id/item_toolbar"
