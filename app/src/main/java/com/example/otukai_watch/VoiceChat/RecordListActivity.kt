@@ -11,9 +11,22 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.SeekBar
+import com.example.otukai_watch.MainActivity
 import com.example.otukai_watch.R
 import com.example.otukai_watch.VoiceChat.adapter.MyAdapter
 import com.example.otukai_watch.VoiceChat.model.Recording
+import com.example.otukai_watch.VoiceChat.model.Voice
+import com.github.kittinunf.fuel.httpDownload
+import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.result.Result
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.item_recording.view.*
 import kotlinx.android.synthetic.main.record_list.*
 import java.io.File
@@ -31,11 +44,21 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
     private var last_index = -1
     private var myAdapter: MyAdapter? = null
 
-    override fun onClickPlay(view: View, record: Recording, recordingList: ArrayList<Recording>, position: Int) {
+    override fun onClickPlay(
+        view: View,
+        record: Recording,
+        recordingList: ArrayList<Recording>,
+        position: Int
+    ) {
         playRecordItem(view, record, recordingList, position)
     }
 
-    private fun playRecordItem(view: View, recordItem: Recording, recordingList: ArrayList<Recording>, position: Int) {
+    private fun playRecordItem(
+        view: View,
+        recordItem: Recording,
+        recordingList: ArrayList<Recording>,
+        position: Int
+    ) {
         val recording = recordingList[position]
 
         if (isPlaying) {
@@ -80,21 +103,72 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         val recordArrayList = ArrayList<Recording>()
         val root = android.os.Environment.getExternalStorageDirectory()
         val path = root.absolutePath + "/AndroidCodility/Audios"
-        val directory = File(path)
-        val files = directory.listFiles()
-        if (files != null) {
 
-            for (i in files.indices) {
-                val fileName = files[i].name
-                val recordingUri = root.absolutePath + "/AndroidCodility/Audios/" + fileName
-                recordArrayList.add(Recording(recordingUri, fileName, false))
+
+        val requestUrl: String = "https://pck.itok01.com/api/v1/voicelog"
+        val voiceAPI: String = "https://pck.itok01.com/api/v1/voice"
+
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+
+        val httpAsync = (requestUrl + "?user=taro")
+            .httpGet()
+            .responseString { request, response, result ->
+                when (result) {
+                    is Result.Failure -> {
+                        val ex = result.getException()
+                        println(ex)
+                    }
+                    is Result.Success -> {
+                        val data = result.get()
+                        println(data)
+
+                        val listMyData =
+                            Types.newParameterizedType(List::class.java, Voice::class.java)
+                        val listAdapter: JsonAdapter<Iterable<Voice>> =
+                            moshi.adapter(listMyData)
+
+                        for (voice in listAdapter.fromJson(data)!!) {
+                            val fileName: String = voice.id.toString() + ".wav"
+                            val fileUri: String = path + fileName
+
+                            if (!File(fileUri).exists()) {
+                                val httpAsync = (voiceAPI + "?user=taro&id=" + voice.id.toString())
+                                    .httpDownload()
+                                    .fileDestination { _, _ ->
+                                        File(fileUri)
+                                    }
+                                    .responseString { request, response, result ->
+                                        when (result) {
+                                            is Result.Failure -> {
+                                                val ex = result.getException()
+                                                println(ex)
+                                            }
+                                            is Result.Success -> {
+                                                val data = result.get()
+                                                println(data)
+                                            }
+                                        }
+                                    }
+
+                                httpAsync.join()
+                            }
+                            recordArrayList.add(Recording(voice, fileUri, fileName, false))
+                        }
+                    }
+                }
             }
-           /* tvNoData.visibility = View.GONE
-            recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
-            myAdapter = MyAdapter(recordArrayList)
-            myAdapter!!.setListener(this)
-            recyclerView.adapter = myAdapter*/
-        }
+
+        httpAsync.join()
+
+        tvNoData.visibility = View.GONE
+        recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+            this,
+            androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+            false
+        )
+        myAdapter = MyAdapter(recordArrayList)
+        myAdapter!!.setListener(this)
+        recyclerView.adapter = myAdapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -148,7 +222,7 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         } catch (e: IOException) {
             Log.e("LOG_TAG", "prepare() failed")
         }
-        //showing the pause button
+//showing the pause button
         seekBar!!.max = mediaPlayer!!.duration
         isPlaying = true
 
