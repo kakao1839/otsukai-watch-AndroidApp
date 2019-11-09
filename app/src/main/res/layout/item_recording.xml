@@ -17,13 +17,6 @@
     android:focusable="true"
     android:src="@drawable/ic_play_circle"/>
 
-
-  <ImageView
-    android:layout_width="41dp"
-    android:layout_height="65dp" app:srcCompat="@drawable/ic_delete" android:id="@+id/delete"
-    android:layout_alignParentEnd="true"
-    android:layout_marginEnd="4dp"
-    android:layout_marginStart="12dp"/>
   <LinearLayout
     android:layout_width="268dp"
     android:layout_height="69dp"
