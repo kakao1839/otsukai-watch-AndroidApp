@@ -129,7 +129,7 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
 
                         for (voice in listAdapter.fromJson(data)!!) {
                             val fileName: String = voice.id.toString() + ".wav"
-                            val fileUri: String = path + fileName
+                            val fileUri: String = path + "/" + fileName
 
                             if (!File(fileUri).exists()) {
                                 val httpAsync = (voiceAPI + "?user=taro&id=" + voice.id.toString())

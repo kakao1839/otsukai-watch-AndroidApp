@@ -20,6 +20,14 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.example.otukai_watch.R
+import com.github.kittinunf.fuel.core.DataPart
+import com.github.kittinunf.fuel.core.FileDataPart
+import com.github.kittinunf.fuel.core.InlineDataPart
+import com.github.kittinunf.fuel.core.Parameters
+import com.github.kittinunf.fuel.httpDownload
+import com.github.kittinunf.fuel.httpPost
+import com.github.kittinunf.fuel.httpUpload
+import com.github.kittinunf.result.Result
 import kotlinx.android.synthetic.main.activity_voice.*
 import java.io.File
 import java.io.IOException
@@ -162,6 +170,28 @@ class VoiceActivity : AppCompatActivity(), View.OnClickListener {
     chronometer.base = SystemClock.elapsedRealtime()
     //showing the play button
     Toast.makeText(this, "Recording saved successfully.", Toast.LENGTH_SHORT).show()
+
+    val voiceAPI: String = "https://pck.itok01.com/api/v1/voice"
+
+    val httpAsync = voiceAPI
+      .httpUpload()
+      .add(FileDataPart(File(fileName), name = "file"))
+      .add(InlineDataPart("taro", "user"))
+      .add(InlineDataPart("1", "side"))
+      .responseString { request, response, result ->
+        when (result) {
+          is Result.Failure -> {
+            val ex = result.getException()
+            println(ex)
+          }
+          is Result.Success -> {
+            val data = result.get()
+            println(data)
+          }
+        }
+      }
+
+    httpAsync.join()
   }
 
 
