@@ -10,7 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="?android:actionBarSize"
     android:padding="10dp"
-
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     android:background="#4CAF50"
     android:textSize="24sp"/>
